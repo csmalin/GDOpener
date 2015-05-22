@@ -1,0 +1,46 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #000;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1, h2 {
+  color: #FFF;
+  text-align: center;
+}
+
+#sliderOutput, #percentage {
+  color: #FFF;
+  display: inline-block;
+  margin-top: 1.7rem;
+}
+
+.range-slider {
+  height: 2rem;
+}
+
+.range-slider-handle {
+  height: 2.375rem;
+}
+
+.range-slider-active-segment {
+  height: 1.875rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+button.gdopener {
+  width: 15rem;
+  height: 10rem;
+}
+
+.history {
+  color: #FFF;
+}
+

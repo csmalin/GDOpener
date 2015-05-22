@@ -1,0 +1,28 @@
+extends layout
+block content
+  script(type='text/javascript', src="javascripts/gdopener.js")
+  .row
+    .large-12.columns
+      h1!= title
+  .row
+    .large-12.columns
+      h2.status!= "State: " + (gdIsOpen ? "Open" : "Closed")
+  .row
+    .large-12.text-center.columns
+      button.large.gdopener!= (gdIsOpen ? "Go!" : "Open!")
+  .row.percentage-slider(class=(gdIsOpen ? "hidden" : undefined))
+    .small-10.medium-11.columns
+      .range-slider(data-slider=true, data-options="display_selector: #sliderOutput; step: 1; start: 0; end: 100; initial: 100;")
+        span.range-slider-handle(role="slider",tabindex="0")
+        span.range-slider-active-segment
+    .small-2.medium-1.columns
+      span#sliderOutput
+      span#percentage %
+  .row.history
+    .large-12.columns
+      ul
+        each val in history
+          li
+            span!= val.created_at
+            span!= val.action === 0 ? "Closed" : "Opened"
+
