@@ -23,6 +23,6 @@ block content
       ul
         each val in history
           li
-            span!= val.created_at
-            span!= val.action === 0 ? "Closed" : "Opened"
+            span!= moment(val.created_at).tz("America/Los_Angeles").format('MMMM Do YYYY, h:mm:ss a')
+            span.right!= (val.action === 0 ? "Closed" : "Opened")
 

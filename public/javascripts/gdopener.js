@@ -11,7 +11,7 @@ $(function(){
 
   socket.on('doorStatus', function(data){
     var newRecord = data['newRecord'];
-    var li = '<li><span>' + newRecord['created_at'] + '</span><span>' + newRecord['action'] + '</span></li>';
+    var li = '<li><span>' + newRecord['created_at'] + '</span><span class="right">' + newRecord['action'] + '</span></li>';
     $('.row.history ul').prepend(li);
     $('.percentage-slider').toggleClass('hidden', data.isOpen);
     $('button.gdopener').text((data.isOpen ? 'Go!' : 'Open!'));
