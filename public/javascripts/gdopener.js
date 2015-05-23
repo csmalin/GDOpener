@@ -11,7 +11,7 @@ $(function(){
 
   socket.on('doorStatus', function(data){
     var doorName = ['Garage', 'Kitchen', 'Patio'][data.DOOR_ID] + " Door"
-    var state = ['Closed', 'Opened'][data.STATE]
+    var state = ['Closed', 'Open'][data.STATE]
     var li = '<li><span>' + doorName + '</span><span>' + state + '</span><span>' + data.CREATED_AT + '</span></li>';
     $('.row.history ul').prepend(li);
     $('.row.history ul li:last-child').remove();
