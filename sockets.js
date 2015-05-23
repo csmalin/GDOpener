@@ -1,7 +1,7 @@
 module.exports =  function(server) {
   var db = require('./db');
   var moment = require('moment-timezone');
-  debugger;
+
   /**
    * Setup GPIO
    */
