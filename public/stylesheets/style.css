@@ -44,3 +44,6 @@ button.gdopener {
   color: #FFF;
 }
 
+.history li span {
+  margin-left: 10px;
+}

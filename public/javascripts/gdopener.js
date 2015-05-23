@@ -10,12 +10,16 @@ $(function(){
   };
 
   socket.on('doorStatus', function(data){
-    var newRecord = data['newRecord'];
-    var li = '<li><span>' + newRecord['created_at'] + '</span><span class="right">' + newRecord['action'] + '</span></li>';
+    var doorName = ['Garage', 'Kitchen', 'Patio'][data.DOOR_ID] + " Door"
+    var state = ['Closed', 'Opened'][data.STATE]
+    var li = '<li><span>' + doorName + '</span><span>' + state + '</span><span>' + data.CREATED_AT + '</span></li>';
     $('.row.history ul').prepend(li);
-    $('.percentage-slider').toggleClass('hidden', data.isOpen);
-    $('button.gdopener').text((data.isOpen ? 'Go!' : 'Open!'));
-    $('.status').text("State: " + (data.isOpen ? "Open" : "Closed"));
+    $('.row.history ul li:last-child').remove();
+    if (data.DOOR_ID === 0) {
+      $('.percentage-slider').toggleClass('hidden', data.isOpen);
+      $('button.gdopener').text((data.STATE ? 'Go!' : 'Open!'));
+      $('.status').text("State: " + (data.STATE ? "Open" : "Closed"));
+    }
   });
 
   $('.gdopener').on('click', function(){

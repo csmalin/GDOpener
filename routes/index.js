@@ -8,7 +8,7 @@ garageDoor.writeSync(1); //Make sure the garage door doesn't open when the app s
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var gdIsOpen = reedSwitch.readSync() === 0;
+  var gdIsOpen = reedSwitch.readSync();
   db.all("SELECT * FROM gd_statuses ORDER BY created_at DESC LIMIT 10", function(err, data) {
     res.render('index', { title: 'GdOpener', gdIsOpen: gdIsOpen, history: data});
   });
