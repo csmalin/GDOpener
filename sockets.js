@@ -1,6 +1,10 @@
 module.exports =  function(server) {
   var db = require('./db');
   var moment = require('moment-timezone');
+  var config = require('config');
+  var twilioConfig = config.get('twilio');
+  var twilioClient = require('twilio')(twilioConfig.accountSID, twilioConfig.authToken);
+  var sensorIDs = config.get('sensors');
 
   /**
    * Setup GPIO
@@ -43,6 +47,19 @@ module.exports =  function(server) {
       emitChange(this.lastID); });
   };
 
+  var smsNotify = function(doorID, state) {
+    twilioClient.sendMessage({
+      to: '+13865667799',
+      from: '+13867537338',
+      body: "The " + sensorIDs[doorID] + " door was " + (state === 0 ? "closed" : "opened") + "."
+    }, function(err, responseData){
+      if(!err) {
+        console.log(responseData.from);
+        console.log(responseData.body);
+      }
+    })
+  }
+
   /**
    * Callback for when state has changed, needs to make sure the state
    * actually changed because sometimes the watch listeners fire off
@@ -52,6 +69,7 @@ module.exports =  function(server) {
     if (state !== doorState[doorID]) {
       dbInsert(doorID, state);
       doorState[doorID] = state;
+      if (doorID === 0) smsNotify(doorID, state);
     }
   };
 
