@@ -14,28 +14,32 @@ block content
           li
             label= title
           li
-            a(href="#") Control
-          li
-            a(href="#") Status
+            a(href="#") Home
           li
             a(href="#") History
           li
             a(href="#") Settings
       section.main-section
-        .row
-          .large-12.columns
-            h2.status= "State: " + (gdIsOpen ? "Open" : "Closed")
-        .row
-          .large-12.text-center.columns
-            button.large.gdopener= (gdIsOpen ? "Go!" : "Open!")
-        .row.percentage-slider(class=(gdIsOpen ? "hidden" : undefined))
-          .small-10.medium-11.columns
-            .range-slider(data-slider=true, data-options="display_selector: #sliderOutput; step: 1; start: 0; end: 100; initial: 100;")
-              span.range-slider-handle(role="slider",tabindex="0")
-              span.range-slider-active-segment
-          .small-2.medium-1.columns
-            span#sliderOutput
-            span#percentage %
+        .row.status
+          ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
+            li.garage-door(class=(gdIsOpen ? "closed" : undefined))
+              .left
+                .row.location.trigger.gdopener Garage
+                .row.last-change
+              .right.percentage-slider(class=(gdIsOpen ? "hidden" : undefined))
+                .row.slider
+                  .range-slider.vertical-range.radius(data-slider=true, data-options="display_selector: #slider-output; step: 1; start: 0; end: 100; initial: 100; vertical: true;")
+                    span.range-slider-handle(role="slider",tabindex="0")
+                    span.range-slider-active-segment
+                .row.slider-percentage
+                  span#slider-output
+                  span#percentage %
+            li.kitchen.open
+              .row.location Kitchen
+              .row.last-change
+            li.patio.closed
+              .row.location Patio
+              .row.last-change
         .row.history
           .large-12.columns
             ul

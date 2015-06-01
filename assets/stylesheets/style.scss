@@ -1,6 +1,74 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #000;
+
+  .main-section{
+    .status li {
+      height: 15rem;
+      width: 15rem;
+      color: #FFFFFF;
+      margin: .25rem;
+      background-color: #43AC6A;
+      border-color: #368a55;
+
+      .location {
+        font-size: 1.5rem;
+      }
+      .row {
+        text-align: center;
+        &.slider {
+          width: 3rem;
+          margin: 0;
+          padding: 0;
+          height: 11.5rem;
+        }
+        &.slider-percentage {
+          height: 3rem;
+          span {
+            margin: 0;
+          }
+        }
+      }
+      .left {
+        width: 12rem;
+      }
+      .right {
+        width: 3rem;
+        .range-slider {
+          margin: .25rem 0 0 0;
+          .range-slider-handle {
+            margin-left: -1rem;
+          }
+          .range-slider-active-segment {
+            width: 1rem;
+            margin-left: -.5rem;
+          }
+        }
+      }
+      &.closed {
+        background-color: #f04124;
+        border-color: #cf2a0e;
+      }
+      &.garage-door {
+        padding: 0;
+        .gdopener {
+          width: 100%;
+          height: 11rem;
+          margin: 0;
+          vertical-align: middle;
+          line-height: 12rem;
+          padding: 1rem 0 0 3rem;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .last-change {
+          text-align: left;
+          margin: 0.5rem;
+        }
+      }
+    }
+  }
 }
 
 a {
@@ -18,25 +86,8 @@ h1, h2 {
   margin-top: 1.7rem;
 }
 
-.range-slider {
-  height: 2rem;
-}
-
-.range-slider-handle {
-  height: 2.375rem;
-}
-
-.range-slider-active-segment {
-  height: 1.875rem;
-}
-
 .hidden {
   visibility: hidden;
-}
-
-button.gdopener {
-  width: 15rem;
-  height: 10rem;
 }
 
 .history {
