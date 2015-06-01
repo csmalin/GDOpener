@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var sassMiddleware = require('node-sass-middleware');
+var babelMiddleware = require('babel-connect');
 
 var routes = require('./routes/index');
 
@@ -14,6 +16,22 @@ app.locals.moment = require('moment-timezone');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// Use sass middleware for stylesheets
+app.use(sassMiddleware({
+  src: __dirname + '/assets',
+  dest: __dirname + '/public',
+  debug: true,
+  outputStyle: 'compressed'
+}));
+
+// Use babel for es6 transpiling
+app.use(babelMiddleware({
+  options: {},
+  src: __dirname + '/assets',
+  dest: __dirname + '/public',
+  ignore: /node_modules/
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
